@@ -1,0 +1,68 @@
+<div class="col-10 col-sm-10 m-auto mt-5">
+  <button (click)="addNewTraining()" class="btn btn-outline-dark btn-sm mb-4">
+    Add new training
+  </button>
+
+  <div class="row row-cols-2 row-cols-md-4 row-cols-sm-2 row-cols-1 g-4">
+    <div
+      *ngFor="let training of trainings | orderBy : 'start_date'"
+      class="col"
+    >
+      <div class="card h-100">
+        <div class="card-header">
+          <span class="title">
+            {{ training.name }}
+          </span>
+        </div>
+        <div class="card-body">
+          <span class="card-text">
+            <p>Start Date: {{ training.start_date | date : "dd.MM.YYYY" }}</p>
+            <p>End Date: {{ training.end_date | date : "dd.MM.YYYY" }}</p>
+            <p>
+              Status:
+              <span
+                *ngIf="
+                  compareDates(training.start_date, training.end_date) ===
+                  'active'
+                "
+                class="text-success"
+                >Active</span
+              >
+              <span
+                *ngIf="
+                  compareDates(training.start_date, training.end_date) ===
+                  'past'
+                "
+                class="text-danger"
+                >Past</span
+              >
+              <span
+                *ngIf="
+                  compareDates(training.start_date, training.end_date) ===
+                  'upcoming'
+                "
+                class="text-info"
+                >Upcoming</span
+              >
+            </p>
+            <span
+              >Description:
+              <p>{{ training.description }}</p></span
+            >
+          </span>
+        </div>
+        <div class="card-footer">
+          <button
+            [disabled]="
+              compareDates(training.start_date, training.end_date) === 'past'
+            "
+            (click)="openEditDialog(training)"
+            class="btn btn-outline-dark btn-sm float-end"
+          >
+            Edit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

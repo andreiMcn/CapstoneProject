@@ -1,0 +1,41 @@
+<div class="col-10 col-sm-10 m-auto mt-5">
+  <button (click)="addNewUser()" class="btn btn-outline-dark btn-sm mb-4">
+    Add new user
+  </button>
+
+  <div class="row row-cols-2 row-cols-md-4 row-cols-sm-2 row-cols-1 g-4">
+    <div *ngFor="let user of users | orderBy : 'user_type'" class="col">
+      <div class="card h-100">
+        <div class="card-header">
+          <span class="title">
+            {{ user.email_address + " - " + user.user_type }}
+          </span>
+        </div>
+        <div class="card-body">
+          <span class="card-text">
+            <p>First Name: {{ user.first_name }}</p>
+            <p>Last Name: {{ user.last_name }}</p>
+            <p>Address: {{ user.address }}</p>
+            <p>Date of Birth {{ user.date_of_birth | date : "dd.MM.YYYY" }}</p>
+            <p>Phone number: {{ user.phone_number }}</p>
+            <p>
+              Status:
+              <span
+                [class]="user.is_deleted ? 'text-danger' : 'text-success'"
+                >{{ user.is_deleted ? "Inactive" : "Active" }}</span
+              >
+            </p>
+          </span>
+        </div>
+        <div class="card-footer">
+          <button
+            (click)="openEditDialog(user)"
+            class="btn btn-outline-dark btn-sm float-end"
+          >
+            Edit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,140 @@
+<section class="gradient-custom full-height">
+  <div class="container py-5 padding-top-0 h-100">
+    <div class="row justify-content-center align-items-center h-100">
+      <div class="col-12 col-lg-9 col-xl-7">
+        <div
+          class="card shadow-2-strong card-registration"
+          style="border-radius: 15px"
+        >
+          <div [formGroup]="form" class="card-body p-4 p-md-5">
+            <h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Registration</h3>
+
+            <div class="row">
+              <div class="col-md-12 mb-4 pb-2">
+                <div class="form-outline">
+                  <label class="form-label" for="emailAddress"
+                    >Email<span class="text-danger">*</span>
+                  </label>
+                  <input
+                    [formControlName]="registerControlsEnum.EMAIL"
+                    type="email"
+                    class="form-control form-control-lg"
+                  />
+                </div>
+              </div>
+
+              <div
+                [class.mb-4]="!verifyPasswords()"
+                [class.mb-1]="verifyPasswords()"
+                class="col-md-6"
+              >
+                <div class="form-outline">
+                  <label class="form-label" for="firstName"
+                    >Password<span class="text-danger">*</span></label
+                  >
+                  <input
+                    [formControlName]="registerControlsEnum.PASSWORD"
+                    type="password"
+                    class="form-control form-control-lg"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-outline">
+                  <label class="form-label" for="lastName"
+                    >Confirm Password<span class="text-danger">*</span></label
+                  >
+                  <input
+                    [formControlName]="registerControlsEnum.PASSWORD_CONFIRM"
+                    type="password"
+                    class="form-control form-control-lg"
+                  />
+                </div>
+              </div>
+
+              <div *ngIf="verifyPasswords()" class="col-md-12 mb-3">
+                <p class="text-danger h6">Passwords must match</p>
+              </div>
+
+              <div class="col-md-12 mb-4 d-flex align-items-center">
+                <div class="form-outline datepicker w-100">
+                  <label for="birthdayDate" class="form-label"
+                    >Date of Birth</label
+                  >
+                  <input
+                    [formControlName]="registerControlsEnum.DATE_OF_BIRTH"
+                    type="date"
+                    class="form-control form-control-lg"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label class="form-label" for="firstName"
+                    >First Name<span class="text-danger">*</span></label
+                  >
+                  <input
+                    [formControlName]="registerControlsEnum.FIRST_NAME"
+                    type="text"
+                    class="form-control form-control-lg"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-6 mb-4">
+                <div class="form-outline">
+                  <label class="form-label" for="lastName"
+                    >Last Name<span class="text-danger">*</span></label
+                  >
+                  <input
+                    [formControlName]="registerControlsEnum.LAST_NAME"
+                    type="text"
+                    class="form-control form-control-lg"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-12 mb-4 pb-2">
+                <div class="form-outline">
+                  <label class="form-label" for="phoneNumber"
+                    >Phone Number<span class="text-danger">*</span></label
+                  >
+                  <input
+                    [formControlName]="registerControlsEnum.PHONE_NUMBER"
+                    type="number"
+                    class="form-control form-control-lg"
+                  />
+                </div>
+              </div>
+
+              <div class="col-md-12 mb-4 pb-2">
+                <div class="form-outline">
+                  <label class="form-label" for="phoneNumber"
+                    >Address<span class="text-danger">*</span></label
+                  >
+                  <textarea
+                    [formControlName]="registerControlsEnum.ADDRESS"
+                    class="form-control form-control-lg"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center pt-1 mb-5 pb-1">
+              <button
+                [disabled]="form.status !== 'VALID' || verifyPasswords()"
+                (click)="sendForm(form)"
+                type="button"
+                class="btn btn-block fa-lg btn-danger"
+              >
+                Register
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
