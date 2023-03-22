@@ -1,0 +1,11 @@
+<div mat-dialog-content>
+  <label class="form-label" for="firstName"
+  >Reason<span class="text-danger">*</span></label
+>
+<textarea
+  [(ngModel)]="feedback"
+  class="form-control"
+></textarea>
+
+<button (click)="closeDialog(feedback);" class="btn btn-success btn-sm mt-3 float-end">Send reason</button>
+</div>

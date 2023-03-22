@@ -1,0 +1,66 @@
+<h1 mat-dialog-title>Add Training</h1>
+<hr />
+<div mat-dialog-content>
+  <div [formGroup]="form" class="card-body">
+    <div class="row">
+      <div class="col-md-12 mb-4 pb-2">
+        <div class="form-outline">
+          <label class="form-label" for="emailAddress"
+            >Title<span class="text-danger">*</span>
+          </label>
+          <input
+            [formControlName]="addTrainingControls.NAME"
+            type="email"
+            class="form-control"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-12 mb-4">
+        <div class="form-outline">
+          <label class="form-label" for="firstName"
+            >Description<span class="text-danger">*</span></label
+          >
+          <textarea
+            [formControlName]="addTrainingControls.DESCRIPTION"
+            class="form-control"
+          ></textarea>
+        </div>
+      </div>
+
+      <div class="col-md-12 mb-4 d-flex align-items-center">
+        <div class="form-outline datepicker w-100">
+          <label for="birthdayDate" class="form-label">Start Date</label>
+          <input
+            [formControlName]="addTrainingControls.START_DATE"
+            type="date"
+            class="form-control"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-12 mb-4 d-flex align-items-center">
+        <div class="form-outline datepicker w-100">
+          <label for="birthdayDate" class="form-label">End Date</label>
+          <input
+            [min] = "this.form.get(addTrainingControls.START_DATE)?.value"
+            [readOnly]="this.form.get(addTrainingControls.START_DATE)?.value == null"
+            [formControlName]="addTrainingControls.END_DATE"
+            type="date"
+            class="form-control"
+          />
+        </div>
+      </div>
+
+      <div class="col-md-12">
+        <button
+          class="btn btn-outline-dark float-end"
+          [disabled]="form.status !== 'VALID'"
+          (click)="addTraining(form)"
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
